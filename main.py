@@ -10,25 +10,36 @@ def welcome():
     )
 
 def menu():
-    print("""Options
+    print("""
+        Options:
         1. Enter a timestamp
-        2. Current timestamp""")
+        2. Current timestamp
+        0. Quit""")
 
 
 if __name__ == '__main__':
     print("")
     welcome()
-    print("")
-    menu()
-    selection = input("Selection: ")
 
-    match selection:
-        case "1":
-            timestamp = math.floor(input("TimeStamp: "))
-            date = StampToDate.StampToDate(timestamp)
+    while True:
+        print("")
+        menu()
+        selection = input("        Selection: ")
+
+        if selection == "1":
+            timestamp = int(input("TimeStamp: "))
+            print("")
+            print("Custom Timestamp:")
+            date = StampToDate.StampToDate(math.floor(timestamp))
             date.calculateDate()
-        case "2":
-            timestamp = input("TimeStamp: ")
+        elif selection == "2":
+            print("")
+            print("Current Timestamp:")
             date = StampToDate.StampToDate(math.floor(time()))
             date.calculateDate()
+        elif selection == "0":
+            print("Exiting... Goodbye...")
+            break
+        else:
+            print("Invalid selection... Please try again.")
 
